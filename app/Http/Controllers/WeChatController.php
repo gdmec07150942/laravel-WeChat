@@ -14,7 +14,8 @@ class WeChatController extends Controller
 {
     public function api()
     { //get post data, May be due to the different environments
-        $postStr = $GLOBALS["HTTP_RAW_POST_DATA"];//php:input
+        //$postStr = $GLOBALS["HTTP_RAW_POST_DATA"];//php:input
+        $postStr = file_get_contents('php://input');
         //写入日志  在同级目录下建立php_log.txt
         //chmod 777php_log.txt(赋权) chown wwwphp_log.txt(修改主)
         error_log(var_export($postStr, 1), 3, 'php_log.txt');

@@ -16,8 +16,8 @@ class WeChatController extends Controller
 
     public function api()
     {
-        //$postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
-        $postStr = file_get_contents('php://input');
+        $postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
+        //$postStr = file_get_contents('php://input');
         if (!empty($postStr)){
             $postObj = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
             $fromUsername = $postObj->FromUserName;

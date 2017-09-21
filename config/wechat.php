@@ -16,10 +16,10 @@ return [
     /*
      * 账号基本信息，请从微信公众平台/开放平台获取
      */
-    'app_id' => env('WECHAT_APPID', 'wx979c0fc4e15108d8'),         // AppID
-    'secret' => env('WECHAT_SECRET', 'de1ec3c8f4d7a5476aa73b2b1cd7cbb3'),     // AppSecret
+    'app_id' => env('WECHAT_APPID', 'wx51835a7de6d207a5'),         // AppID
+    'secret' => env('WECHAT_SECRET', 'c878505a150450435e81afc81f8428ca'),     // AppSecret
     'token' => env('WECHAT_TOKEN', 'weixin'),          // Token
-    'aes_key' => env('WECHAT_AES_KEY', 'ld8dMm8NPqT3CQKzdE9Bk1pDvUR4tUJuvtjCknTSkEX'),                    // EncodingAESKey
+    'aes_key' => env('WECHAT_AES_KEY', ''),                    // EncodingAESKey
 
     /**
      * 开放平台第三方平台配置信息

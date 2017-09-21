@@ -17,8 +17,8 @@ class WeChatController extends Controller
     public function api()
     {
         $postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
-        //$postStr = file_get_contents('php://input');
-        if (!empty($postStr)){
+        $postStr = file_get_contents('php://input');
+        if (!empty($postStr)) {
             $postObj = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
             $fromUsername = $postObj->FromUserName;
             $toUsername = $postObj->ToUserName;
@@ -32,14 +32,13 @@ class WeChatController extends Controller
                         <Content><![CDATA[%s]]></Content>
                         <FuncFlag>0</FuncFlag>
                         </xml>";
-            if($keyword == 'hello')
-            {
+            if ($keyword == 'hello') {
                 $msgType = "text";
-                $contentStr = date("Y-m-d H:i:s",time());
+                $contentStr = date("Y-m-d H:i:s", time());
                 $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
                 echo $resultStr;
             }
-        }else{
+        } else {
             echo "";
             exit;
         }

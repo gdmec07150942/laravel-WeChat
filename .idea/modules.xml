@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/laravel-WeChat.iml" filepath="$PROJECT_DIR$/.idea/laravel-WeChat.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/laravel-wechat-test.iml" filepath="$PROJECT_DIR$/.idea/laravel-wechat-test.iml" />
     </modules>
   </component>
 </project>

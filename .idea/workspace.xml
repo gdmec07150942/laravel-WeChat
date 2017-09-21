@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ec4ba1be-e607-49ba-b021-06715e012d87" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/WeChatController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/WeChatController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/web.php" afterPath="$PROJECT_DIR$/routes/web.php" />
     </list>
     <ignored path="laravel-wechat-test.iws" />
@@ -28,11 +29,11 @@
       <file leaf-file-name="WeChatController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/WeChatController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.25">
-              <caret line="154" column="25" selection-start-line="154" selection-start-column="20" selection-end-line="154" selection-end-column="25" />
+            <state vertical-scroll-proportion="-4.2777777">
+              <caret line="112" column="31" selection-start-line="112" selection-start-column="20" selection-end-line="112" selection-end-column="31" />
               <folding>
                 <element signature="e#40#78#0#PHP" expanded="true" />
-                <marker date="1505989653976" expanded="true" signature="1200:1599" placeholder="..." />
+                <marker date="1505989836843" expanded="true" signature="1200:1599" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -62,7 +63,7 @@
         <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.25375938">
-              <caret line="14" column="39" selection-start-line="14" selection-start-column="39" selection-end-line="14" selection-end-column="39" />
+              <caret line="14" column="45" selection-start-line="14" selection-start-column="45" selection-end-line="14" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -223,7 +224,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#40#78#0#PHP" expanded="true" />
-            <marker date="1505989653976" expanded="true" signature="1200:1599" placeholder="..." />
+            <marker date="1505989836843" expanded="true" signature="1200:1599" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -262,11 +263,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/WeChatController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.25">
-          <caret line="154" column="25" selection-start-line="154" selection-start-column="20" selection-end-line="154" selection-end-column="25" />
+        <state vertical-scroll-proportion="-4.2777777">
+          <caret line="112" column="31" selection-start-line="112" selection-start-column="20" selection-end-line="112" selection-end-column="31" />
           <folding>
             <element signature="e#40#78#0#PHP" expanded="true" />
-            <marker date="1505989653976" expanded="true" signature="1200:1599" placeholder="..." />
+            <marker date="1505989836843" expanded="true" signature="1200:1599" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -290,7 +291,7 @@
     <entry file="file://$PROJECT_DIR$/routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.25375938">
-          <caret line="14" column="39" selection-start-line="14" selection-start-column="39" selection-end-line="14" selection-end-column="39" />
+          <caret line="14" column="45" selection-start-line="14" selection-start-column="45" selection-end-line="14" selection-end-column="45" />
           <folding />
         </state>
       </provider>

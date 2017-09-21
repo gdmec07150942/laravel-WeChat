@@ -12,7 +12,7 @@
 */
 
 
-Route::any('/', 'WeChatController@serve');
+Route::any('/', 'WeChatController@responseMsg');
 Route::group(['middleware' => ['web']], function () {
     Route::any('/weixin', 'WeChatController@wechat');
     Route::group(['middleware' => ['wechat.oauth']], function () {

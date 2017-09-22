@@ -12,7 +12,6 @@ use Monolog\Logger;
 
 class WeChatController extends Controller
 {
-//
     public function serve()
     {
         header('Content-type:text');
@@ -84,17 +83,17 @@ class WeChatController extends Controller
             exit;
         }
     }
-    private $serve;
-    private $user;
-    private $auth;
-
-    public function __construct(Application $app)
-    {
-        $this->serve = $app->server;
-        $this->user = $app->user;
-        $this->auth = $app->oauth;
-    }
-
+//    private $serve;
+//    private $user;
+//    private $auth;
+//
+//    public function __construct(Application $app)
+//    {
+//        $this->serve = $app->server;
+//        $this->user = $app->user;
+//        $this->auth = $app->oauth;
+//    }
+//
 //    public function serve()
 //    {
 //        $options = Config::get('wechat');
@@ -191,35 +190,35 @@ class WeChatController extends Controller
 //        });
 //        return $serve->serve();
 //    }
-
-    public function test2()
-    {
-        // 未登录
-        if (empty(session('wechat_user'))) {
-            session('target_url', 'http://www.yiokit.com/laravel-wechat-test/public/user/profile');
-            return $this->auth->redirect();
-            // 这里不一定是return，如果你的框架action不是返回内容的话你就得使用
-            // $oauth->redirect()->send();
-        } else {
-            // 已经登录过
-            $user = session('wechat_user');
-            return '已经登录过了';
-        }
-
-    }
-
-    public function test1()
-    {
-        // 获取 OAuth 授权结果用户信息
-        $user = $this->auth->user();
-        session('wechat_user', $user->toArray());
-        $targetUrl = empty(session('target_url')) ? '/' : session('target_url');
-        return view('welcome');
-//        return '目标跳转链接:'.$targetUrl;
-        //header('location:'. $targetUrl); // 跳转到 user/profile
-    }
-
-    public function test()
-    {
-    }
+//
+//    public function test2()
+//    {
+//        // 未登录
+//        if (empty(session('wechat_user'))) {
+//            session('target_url', 'http://www.yiokit.com/laravel-wechat-test/public/user/profile');
+//            return $this->auth->redirect();
+//            // 这里不一定是return，如果你的框架action不是返回内容的话你就得使用
+//            // $oauth->redirect()->send();
+//        } else {
+//            // 已经登录过
+//            $user = session('wechat_user');
+//            return '已经登录过了';
+//        }
+//
+//    }
+//
+//    public function test1()
+//    {
+//        // 获取 OAuth 授权结果用户信息
+//        $user = $this->auth->user();
+//        session('wechat_user', $user->toArray());
+//        $targetUrl = empty(session('target_url')) ? '/' : session('target_url');
+//        return view('welcome');
+////        return '目标跳转链接:'.$targetUrl;
+//        //header('location:'. $targetUrl); // 跳转到 user/profile
+//    }
+//
+//    public function test()
+//    {
+//    }
 }

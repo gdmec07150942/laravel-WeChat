@@ -26,7 +26,7 @@ class MenuController extends Controller
                 "type" => "click",
                 "name" => "点我没用",
                 "key"  => "CLICK_BUTTON"
-        ],
+            ],
             [
                 "name"       => "二级菜单",
                 "sub_button" => [

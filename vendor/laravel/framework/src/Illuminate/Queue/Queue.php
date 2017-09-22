@@ -2,7 +2,9 @@
 
 namespace Illuminate\Queue;
 
+use DateTimeInterface;
 use Illuminate\Container\Container;
+use Illuminate\Support\InteractsWithTime;
 
 abstract class Queue
 {
@@ -46,7 +48,7 @@ abstract class Queue
      * Push a new job onto the queue after a delay.
      *
      * @param  string  $queue
-     * @param  \DateTime|int  $delay
+     * @param  \DateTimeInterface|\DateInterval|int  $delay
      * @param  string  $job
      * @param  mixed   $data
      * @return mixed
@@ -76,17 +78,18 @@ abstract class Queue
      *
      * @param  string  $job
      * @param  mixed   $data
-     * @param  string  $queue
      * @return string
      *
      * @throws \Illuminate\Queue\InvalidPayloadException
      */
-    protected function createPayload($job, $data = '', $queue = null)
+    protected function createPayload($job, $data = '')
     {
-        $payload = json_encode($this->createPayloadArray($job, $data, $queue));
+        $payload = json_encode($this->createPayloadArray($job, $data));
 
         if (JSON_ERROR_NONE !== json_last_error()) {
-            throw new InvalidPayloadException;
+            throw new InvalidPayloadException(
+                'Unable to JSON encode payload. Error code: '.json_last_error()
+            );
         }
 
         return $payload;
@@ -97,10 +100,9 @@ abstract class Queue
      *
      * @param  string  $job
      * @param  mixed   $data
-     * @param  string  $queue
      * @return array
      */
-    protected function createPayloadArray($job, $data = '', $queue = null)
+    protected function createPayloadArray($job, $data = '')
     {
         return is_object($job)
                     ? $this->createObjectPayload($job)
@@ -116,14 +118,46 @@ abstract class Queue
     protected function createObjectPayload($job)
     {
         return [
+            'displayName' => $this->getDisplayName($job),
             'job' => 'Illuminate\Queue\CallQueuedHandler@call',
-            'maxTries' => isset($job->tries) ? $job->tries : null,
-            'timeout' => isset($job->timeout) ? $job->timeout : null,
+            'maxTries' => $job->tries ?? null,
+            'timeout' => $job->timeout ?? null,
+            'timeoutAt' => $this->getJobExpiration($job),
             'data' => [
                 'commandName' => get_class($job),
                 'command' => serialize(clone $job),
             ],
         ];
+    }
+
+    /**
+     * Get the display name for the given job.
+     *
+     * @param  mixed  $job
+     * @return string
+     */
+    protected function getDisplayName($job)
+    {
+        return method_exists($job, 'displayName')
+                        ? $job->displayName() : get_class($job);
+    }
+
+    /**
+     * Get the expiration timestamp for an object-based queue handler.
+     *
+     * @param  mixed  $job
+     * @return mixed
+     */
+    public function getJobExpiration($job)
+    {
+        if (! method_exists($job, 'retryUntil') && ! isset($job->timeoutAt)) {
+            return;
+        }
+
+        $expiration = $job->timeoutAt ?? $job->retryUntil();
+
+        return $expiration instanceof DateTimeInterface
+                        ? $expiration->getTimestamp() : $expiration;
     }
 
     /**
@@ -135,7 +169,11 @@ abstract class Queue
      */
     protected function createStringPayload($job, $data)
     {
-        return ['job' => $job, 'data' => $data];
+        return [
+            'displayName' => is_string($job) ? explode('@', $job)[0] : null,
+            'job' => $job, 'maxTries' => null,
+            'timeout' => null, 'data' => $data,
+        ];
     }
 
     /**

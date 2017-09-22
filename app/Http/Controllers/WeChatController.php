@@ -14,31 +14,12 @@ class WeChatController extends Controller
 {
     public function serve()
     {
-        $postStr = file_get_contents('php://input');
-        if (!empty($postStr)){
-            $postObj = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
-            $fromUsername = $postObj->FromUserName;
-            $toUsername = $postObj->ToUserName;
-            $keyword = trim($postObj->Content);
-            $time = time();
-            $textTpl = "<xml>
-                        <ToUserName><![CDATA[%s]]></ToUserName>
-                        <FromUserName><![CDATA[%s]]></FromUserName>
-                        <CreateTime>%s</CreateTime>
-                        <MsgType><![CDATA[%s]]></MsgType>
-                        <Content><![CDATA[%s]]></Content>
-                        <FuncFlag>0</FuncFlag>
-                        </xml>";
-            if($keyword == 'hello')
-            {
-                $msgType = "text";
-                $contentStr = date("Y-m-d H:i:s",time());
-                $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
-                echo $resultStr;
-            }
+        header('Content-type:text');
+        define("TOKEN", "weixin");
+        if (isset($_GET['echostr'])) {
+            $this->valid();
         }else{
-            echo "1231";
-            exit;
+            $this->responseMsg();
         }
     }
 
@@ -98,7 +79,7 @@ class WeChatController extends Controller
                 echo $resultStr;
             }
         }else{
-            echo "1231";
+            echo "";
             exit;
         }
     }
